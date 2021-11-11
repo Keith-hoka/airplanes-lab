@@ -25,9 +25,10 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path
+      render :json => @user
     else
-      render :new
+      puts @user.errors.full_messages
+      render :json => []
     end
 
     # respond_to do |format|
